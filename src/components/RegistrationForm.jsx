@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { registerParticipant } from '../api/client';
+import { Link } from 'react-router-dom';
 
 const PROGRAMS = ["BSIT-Networking", "BSIT-Database", "BSCA-IOT", "BSCA-Embedded System"];
 const YEAR_LEVELS = ["1st", "2nd", "3rd", "4th"];
@@ -33,7 +34,6 @@ const RegistrationForm = ({ slots, onRegistrationSuccess }) => {
     }
   };
 
-  // Added dark mode classes for all inputs
   const inputClass = "w-full p-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md focus:bg-white dark:focus:bg-gray-600 focus:ring-2 focus:ring-[#6b1236] dark:focus:ring-[#eeb211] focus:border-transparent transition-colors outline-none cursor-pointer text-gray-900 dark:text-white";
   const textInputClass = "w-full p-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md focus:bg-white dark:focus:bg-gray-600 focus:ring-2 focus:ring-[#6b1236] dark:focus:ring-[#eeb211] focus:border-transparent transition-colors outline-none text-gray-900 dark:text-white";
   const labelClass = "block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide mb-2";
@@ -49,7 +49,6 @@ const RegistrationForm = ({ slots, onRegistrationSuccess }) => {
         </select>
       </div>
 
-      {/* Responsive Grid: 1 column on mobile, 2 on sm screens */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className={labelClass}>First Name</label>
@@ -95,6 +94,22 @@ const RegistrationForm = ({ slots, onRegistrationSuccess }) => {
         <input name="email" type="email" className={textInputClass} required value={formData.email} onChange={handleChange} />
       </div>
 
+      {/* ---Data Privacy Checkbox --- */}
+      <div className="mt-4 pt-2">
+        <label className="flex items-start gap-3 cursor-pointer group">
+          <div className="flex items-center h-5 mt-0.5">
+            <input 
+              type="checkbox" 
+              required 
+              className="w-4 h-4 text-[#6b1236] dark:text-[#eeb211] border-gray-300 dark:border-gray-600 rounded focus:ring-[#6b1236] dark:focus:ring-[#eeb211] dark:bg-gray-700 cursor-pointer"
+            />
+          </div>
+          <p className="text-[11px] leading-tight text-gray-500 dark:text-gray-400 select-none">
+            <span className="font-bold text-gray-700 dark:text-gray-300">Data Privacy Consent:</span> By checking this box, you agree that your information will be collected and kept strictly confidential. It will be used solely for the purpose of the Hack & Hustle seminar registration and communication.
+          </p>
+        </label>
+      </div>
+
       <button 
         type="submit" 
         disabled={isSubmitting}
@@ -106,8 +121,18 @@ const RegistrationForm = ({ slots, onRegistrationSuccess }) => {
         {isSubmitting ? 'Registering...' : 'Complete Registration'}
       </button>
 
+      {/* About Link */}
+      <div className="text-center mt-4 mb-2">
+        <Link 
+          to="/about" 
+          className="text-sm font-bold text-gray-500 hover:text-[#6b1236] dark:text-gray-400 dark:hover:text-[#eeb211] transition-colors underline decoration-2 underline-offset-4"
+        >
+          What is Hack & Hustle?
+        </Link>
+      </div>
+
       {status.message && (
-        <div className={`p-4 rounded-md text-center text-sm font-bold border ${
+        <div className={`p-4 rounded-md text-center text-sm font-bold border mt-2 ${
           status.type === 'error' ? 'bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800' : 
           status.type === 'success' ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 border-green-200 dark:border-green-800' : 
           'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800'}`}>
