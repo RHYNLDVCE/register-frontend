@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+
+/* Override Tailwind's default sans-serif font with Inter */
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+}
 /* Enable class-based dark mode for Tailwind v4 */
 @variant dark (&:where(.dark, .dark *));
 
