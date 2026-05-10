@@ -9,7 +9,7 @@ const SlotDisplay = ({ slots }) => {
         <p className="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest mb-1">Hackathon</p>
         <p className="text-4xl font-extrabold text-[#6b1236] dark:text-[#eeb211]">
           {slots.hackathon}
-          <span className="text-lg text-gray-400 dark:text-gray-500 font-medium"> / 15</span>
+          <span className="text-lg text-gray-400 dark:text-gray-500 font-medium"></span>
         </p>
         <p className="text-xs text-gray-400 mt-1">Slots Available</p>
       </div>
@@ -19,7 +19,7 @@ const SlotDisplay = ({ slots }) => {
         <p className="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest mb-1">Startup</p>
         <p className="text-4xl font-extrabold text-[#eeb211] dark:text-[#6b1236]">
           {slots.startup}
-          <span className="text-lg text-gray-400 dark:text-gray-500 font-medium"> / 15</span>
+          <span className="text-lg text-gray-400 dark:text-gray-500 font-medium"></span>
         </p>
         <p className="text-xs text-gray-400 mt-1">Slots Available</p>
       </div>
