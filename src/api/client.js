@@ -41,3 +41,38 @@ export const getParticipants = async (token) => {
     if (!response.ok) throw new Error("Failed to fetch participants");
     return response.json();
 };
+
+export const saveTemplate = async (token, templateData) => {
+    const response = await fetch(`${API_BASE}/admin/templates`, {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` 
+        },
+        body: JSON.stringify(templateData),
+    });
+    if (!response.ok) throw new Error("Failed to save template");
+    return response.json();
+};
+
+export const getTemplate = async (token, track) => {
+    const response = await fetch(`${API_BASE}/admin/templates/${track}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!response.ok) throw new Error("Failed to fetch template");
+    return response.json();
+};
+
+export const dispatchEmail = async (token, dispatchData) => {
+    const response = await fetch(`${API_BASE}/admin/emails/dispatch`, {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` 
+        },
+        body: JSON.stringify(dispatchData),
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.detail || "Failed to dispatch email");
+    return result;
+};
